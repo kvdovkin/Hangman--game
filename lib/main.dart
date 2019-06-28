@@ -4,6 +4,8 @@ import 'package:flutter_web/material.dart';
 import 'package:flutter_web_ui/ui.dart' as prefix1;
 
 void main() => runApp(MyApp());
+enum SingingCharacter { lafayette, jefferson }
+
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -20,10 +22,17 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  SingingCharacter _character = SingingCharacter.lafayette;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +44,7 @@ class MyHomePage extends StatelessWidget {
         title: Row(
           children: <Widget>[
             Image.asset('Hangman.png'),
-            Text(title),
+            Text(widget.title),
             Text('!')
           ],
         ),
@@ -49,32 +58,29 @@ class MyHomePage extends StatelessWidget {
       decoration: BoxDecoration(color: Color(0xEEEEEE)),
       child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-             _renderGallows(),
-            Container(
-              decoration: BoxDecoration(color: Colors.white),
-              padding: const EdgeInsets.all(25.0),
-              width: 640,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text('Вопрос 1 из 20'),
-                  Text('Способность объекта скрывать свое внутреннее устройство, согласно которому объект рассматривается как черный ящик, называется:'),
-                  Radio(activeColor: Colors.green),
-                  Radio(activeColor: Colors.green),
-                  Radio(activeColor: Colors.green, value: null)
-                ],
+              _renderGallows(),
+              RadioListTile<SingingCharacter>(
+                  title: const Text('Lafayette'),
+                  value: SingingCharacter.lafayette,
+                  groupValue: _character,
+                  onChanged: (SingingCharacter value) { setState(() { _character = value; }); },
               ),
-            )
+              RadioListTile<SingingCharacter>(
+                title: const Text('Thomas Jefferson'),
+                value: SingingCharacter.jefferson,
+                groupValue: _character,
+                onChanged: (SingingCharacter value) { setState(() { _character = value; }); },
+              ),
           ],
-        ),
+        )
       )
     );
   }
-      
+
         Widget _renderGallows() => Image.asset("Gallows.png");
+
         Widget _renderMistake1() => Image.asset('Mistake-1.png');
-      
+
         color(int i) {}
 }
