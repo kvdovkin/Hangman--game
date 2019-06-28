@@ -1,6 +1,7 @@
 import 'dart:html' as prefix0;
 
 import 'package:flutter_web/material.dart';
+import 'package:flutter_web_ui/ui.dart' as prefix1;
 
 void main() => runApp(MyApp());
 
@@ -44,25 +45,36 @@ class MyHomePage extends StatelessWidget {
   }
 
   Widget _renderBody() {
-    return Center(
+    return Container(
+      decoration: BoxDecoration(color: Color(0xEEEEEE)),
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _renderGallows(),
-            Text(
-              'Hello, World!',
-            ),
-            new Padding(padding: EdgeInsets.all(12.0),) , 
-            new Container(
-              child: new Text('Text this...'),
-              
+             _renderGallows(),
+            Container(
+              decoration: BoxDecoration(color: Colors.white),
+              padding: const EdgeInsets.all(25.0),
+              width: 640,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text('Вопрос 1 из 20'),
+                  Text('Способность объекта скрывать свое внутреннее устройство, согласно которому объект рассматривается как черный ящик, называется:'),
+                  Radio(activeColor: Colors.green),
+                  Radio(activeColor: Colors.green),
+                  Radio(activeColor: Colors.green, value: null)
+                ],
+              ),
             )
           ],
         ),
-      );
+      )
+    );
   }
-
-  Widget _renderGallows() {
-    return Image.asset('Gallows.png');   
-  }
+      
+        Widget _renderGallows() => Image.asset("Gallows.png");
+        Widget _renderMistake1() => Image.asset('Mistake-1.png');
+      
+        color(int i) {}
 }
