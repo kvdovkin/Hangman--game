@@ -4,7 +4,7 @@ import 'package:flutter_web/material.dart';
 import 'package:flutter_web_ui/ui.dart' as prefix1;
 
 void main() => runApp(MyApp());
-enum SingingCharacter { lafayette, jefferson }
+enum SingingCharacter { first, second, third, fourth}
 
 
 class MyApp extends StatelessWidget {
@@ -32,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  SingingCharacter _character = SingingCharacter.lafayette;
+  SingingCharacter _character = SingingCharacter.second;
 
   @override
   Widget build(BuildContext context) {
@@ -60,18 +60,44 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
               _renderGallows(),
-              RadioListTile<SingingCharacter>(
-                  title: const Text('Lafayette'),
-                  value: SingingCharacter.lafayette,
-                  groupValue: _character,
-                  onChanged: (SingingCharacter value) { setState(() { _character = value; }); },
+              Container(
+                decoration: BoxDecoration(color: Colors.white),
+                width: 640,
+                padding: EdgeInsets.all(25.0),
+                child: Center(
+                  child: Column(
+                    children: <Widget>[
+                      Text('Вопрос 1 из 20'),
+                      Text('Способность объекта скрывать свое внутреннее устройство, согласно которому объект рассматривается как черный ящик, называется:'),
+                      RadioListTile<SingingCharacter>(
+                        title: const Text(' Абстракция'),
+                        value: SingingCharacter.first,
+                        groupValue: _character,
+                        onChanged: (SingingCharacter value) { setState(() { _character = value; }); },
+                      ),
+                      RadioListTile<SingingCharacter>(
+                        title: const Text('Инкапсуляция'),
+                        value: SingingCharacter.second,
+                        groupValue: _character,
+                        onChanged: (SingingCharacter value) { setState(() { _character = value; }); },
+                      ),
+                      RadioListTile<SingingCharacter>(
+                        title: const Text('Интерфейс'),
+                        value: SingingCharacter.third,
+                        groupValue: _character,
+                        onChanged: (SingingCharacter value) { setState(() { _character = value; }); },
+                      ),
+                      RadioListTile<SingingCharacter>(
+                        title: const Text('Полиморфизм'),
+                        value: SingingCharacter.fourth,
+                        groupValue: _character,
+                        onChanged: (SingingCharacter value) { setState(() { _character = value; }); },
+                      ),                    
+                    ],
+                  ),
+                ),
               ),
-              RadioListTile<SingingCharacter>(
-                title: const Text('Thomas Jefferson'),
-                value: SingingCharacter.jefferson,
-                groupValue: _character,
-                onChanged: (SingingCharacter value) { setState(() { _character = value; }); },
-              ),
+              
           ],
         )
       )
