@@ -1,2 +1,2 @@
 # Hangman-game
-Flutter-learning (летняя практика)
+Flutter-learning 
